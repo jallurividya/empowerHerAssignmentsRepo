@@ -14,3 +14,15 @@ function checkPrime(num){
 }
 console.log(checkPrime(8))
 console.log(checkPrime(11))
+
+//check even or odd
+function evenOdd(num){
+    if(num%2==0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+console.log(evenOdd(7));
+console.log(evenOdd(14));
