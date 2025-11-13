@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Box</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            background-color: rgb(176, 176, 217);
+            text-align: center;
+            margin: auto;
+            border-radius: 20px;
+            font-family: sans-serif;
+            gap: 30px;
+            padding-bottom: 10px;
+        }
+        h1{
+            font-style: italic;
+        }
+        .box{
+            background-color: white;
+            margin: auto;
+            width: 60%;
+            border-radius: 5px;
+            font-weight: bold;
+            padding-bottom: 0px;
+            padding-top: 4px;
+            box-shadow: 2px 2px 5px gray;
+        }
+        .box p:first-child{
+            font-size: 20px;
+            color: grey;        
+        }
+        .box p:last-child{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Highest &<br>Average CTC</h1>
+        <div class="box">
+            <p>Expected Increase in<br>Salary Potential</p>
+            <p>60%</p>
+        </div>
+        <div class="box">
+            <p>Average CTC</p>
+            <p>&#x20B9 6.1LPA</p>
+        </div>
+        <div class="box">
+            <p>Highest CTC</p>
+            <p>&#x20B9 36LPA</p>
+        </div>
+    </div>
+</body>
+</html>
