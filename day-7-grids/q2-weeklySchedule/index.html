@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Schedule</title>
+    <style>
+        #parent{
+            display: grid;
+            grid-template-columns: repeat(6,1fr);
+            gap: 20px;
+            width: 60%;
+            margin: auto;
+        }
+        #parent > div{
+            background-color: beige;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+        }
+        #parent > div:first-child{
+            visibility: hidden;
+        }
+        #parent>div:last-child{
+            grid-column: span 6;
+            text-align: left;
+            justify-content: start;
+        }
+        #parent>div:nth-child(even){
+            background-color: rgb(237, 209, 237);
+        }
+        #parent>div:nth-child(odd){
+            background-color: rgb(246, 239, 202);
+        }
+        #parent>div:nth-child(6n+1){
+            background-color: rgb(182, 239, 239);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family: cursive; text-align: center;">Weekly Schedule</h1>
+    <div id="parent">
+        <div>Empty</div>
+        <div style="font-weight: bold;">Monday</div>
+        <div style="font-weight: bold;">Tuesday</div>
+        <div style="font-weight: bold;">Wednesday</div>
+        <div style="font-weight: bold;">Thursday</div>
+        <div style="font-weight: bold;">Friday</div>
+
+        <div>08:00</div>
+        <div>Maths</div>
+        <div>Telugu</div>
+        <div>Exam</div>
+        <div>Science</div>
+        <div>English</div>
+
+        <div>09:00</div>
+        <div>English</div>
+        <div>Science</div>
+        <div>Social</div>
+        <div>Hindi</div>
+        <div>Exam</div>
+
+        <div>10:00</div>
+        <div>Exam</div>
+        <div>Social</div>
+        <div>Telugu</div>
+        <div>English</div>
+        <div>Hindi</div>
+    
+        <div>11:00</div>
+        <div>Social</div>
+        <div>Hindi</div>
+        <div>Maths</div>
+        <div>Maths</div>
+        <div>Social</div>
+    
+        <div>12:00</div>
+        <div>Lunch</div>
+        <div>Lunch</div>
+        <div>Lunch</div>
+        <div>Lunch</div>
+        <div>Lunch</div>
+    
+        <div>13:00</div>
+        <div>Telugu</div>
+        <div>English</div>
+        <div>Science</div>
+        <div>Exam</div>
+        <div>Telugu</div>
+
+        <div>14:00</div>
+        <div>Hindi</div>
+        <div>Exam</div>
+        <div>English</div>
+        <div>Social</div>
+        <div>Science</div>
+
+        <div>15:00</div>
+        <div>Science</div>
+        <div>PT</div>
+        <div>Hindi</div>
+        <div>PT</div>
+        <div>Maths</div>
+
+        <div>16:00</div>
+        <div>PT</div>
+        <div>Maths</div>
+        <div>PT</div>
+        <div>English</div>
+        <div>PT</div>
+
+        <div>Note:</div>
+    </div>
+</body>
+</html>
