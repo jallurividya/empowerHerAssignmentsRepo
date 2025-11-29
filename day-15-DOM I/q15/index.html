@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .completed {
+        text-decoration: line-through;
+        color: gray;
+    }
+    </style>
+</head>
+<body>
+    <input type="text" id="task" placeholder="enter task name">
+    <button>Add Task</button>
+    <ul id="taskList"></ul>
+</body>
+<script>
+    const taskInput = document.querySelector("#task");
+    const addBtn = document.querySelector("button");
+    const taskList = document.querySelector("#taskList");
+    let tasks = [];
+    renderTasks();
+
+    addBtn.addEventListener("click", () => {
+    if (taskInput.value.trim() === "") {
+        alert("Please enter a task!");
+        return;
+    }
+
+    tasks.push({
+        text: taskInput.value,
+        completed: false
+    });
+
+  taskInput.value = "";
+  renderTasks();
+});
+
+function renderTasks() {
+    taskList.innerHTML = "";
+    tasks.forEach((task, index) => {
+    const li = document.createElement("li");
+    if (task.completed) li.classList.add("completed");
+
+    li.innerHTML = `${task.text}
+    <div class="btns">
+        <button class="doneBtn" onclick="toggleComplete(${index})">Complete</button>
+        <button class="deleteBtn" onclick="deleteTask(${index})">Delete</button>
+      </div>`
+        let tasks = [];
+    taskList.appendChild(li);
+  });
+}
+function toggleComplete(i) {
+  tasks[i].completed = !tasks[i].completed;
+  renderTasks();
+}
+function deleteTask(i) {
+  tasks.splice(i, 1);
+  renderTasks();
+}
+</script>
+</html>
+

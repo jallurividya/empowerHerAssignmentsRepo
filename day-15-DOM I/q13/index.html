@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="col-name">
+        <input type="text" id="txt-cnt">
+    </div>
+        <button id="bg-btn">Change Background</button>
+        <button id="txt-btn">Update Text</button>
+    <div id="output">
+        This is the initial content of the div.
+    </div>
+</body>
+<script>
+    const bgBtn = document.getElementById("bg-btn"); 
+    const txtBtn = document.getElementById("txt-btn");
+    const div = document.getElementById("output");
+
+    bgBtn.addEventListener("click",function(){
+        const bgcolor = document.getElementById("col-name").value;
+        document.body.style.backgroundColor=bgcolor;
+    });
+    txtBtn.addEventListener("click", function() {
+        const text = document.getElementById("txt-cnt").value;
+        if(text === ""){
+            alert("Please enter some text!");
+        }
+        else{
+            document.getElementById("output").textContent = text;
+        }
+    });
+</script>
+</html>
