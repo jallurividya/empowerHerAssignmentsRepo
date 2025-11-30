@@ -5,34 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    body{
+        margin-top: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    button{
+        width: 150px;
+        background-color: rgb(74, 74, 220);
+        color: white;
+        border: none;
+    }
+</style>
 <body>
     <div>
-        <input type="text" id="col-name">
-        <input type="text" id="txt-cnt">
-    </div>
-        <button id="bg-btn">Change Background</button>
+        <input type="text" id="col-name" placeholder="Enter a valid color name">
+        <button id="bg-btn">Change Background</button><br><br>
+        <input type="text" id="txt-cnt" placeholder="Enter text to display">
         <button id="txt-btn">Update Text</button>
+    </div><br>
     <div id="output">
         This is the initial content of the div.
     </div>
 </body>
-<script>
-    const bgBtn = document.getElementById("bg-btn"); 
-    const txtBtn = document.getElementById("txt-btn");
-    const div = document.getElementById("output");
-
-    bgBtn.addEventListener("click",function(){
-        const bgcolor = document.getElementById("col-name").value;
-        document.body.style.backgroundColor=bgcolor;
-    });
-    txtBtn.addEventListener("click", function() {
-        const text = document.getElementById("txt-cnt").value;
-        if(text === ""){
-            alert("Please enter some text!");
-        }
-        else{
-            document.getElementById("output").textContent = text;
-        }
-    });
+<script src="index.js">
 </script>
 </html>

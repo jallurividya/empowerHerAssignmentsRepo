@@ -14,16 +14,16 @@
 
   <script>
     // JavaScript code with bugs
-    const para = document.querySelector('#message'); // Incorrect id
-    const textButton = document.getElementById('textButton'); // Incorrect method
-    textButton.addEventListener("click",() => { // Incorrect method name
-      para.textContent = 'New Message'; // Incorrect property
+    const para = document.querySelector('#message'); // Incorrect id   //We have to write message instead of massage
+    const textButton = document.getElementById('textButton'); // Incorrect method //Here we have to use getElementById because textButton is not an element.
+    textButton.addEventListener("click",() => { // Incorrect method name   // Medtod name is addEventListener
+      para.textContent = 'New Message'; // Incorrect property   The property Name is textContent... But it is given as contentText
     });
 
     const box = document.getElementById('box');
     const colorButton = document.getElementById('colorButton');
     colorButton.addEventListener('click', () => {
-      box.style.backgroundColor = "blue"; // Typo in 'style'
+      box.style.backgroundColor = "blue"; // Typo in 'style'  //Its just a spelling mistake   "style"
     });
   </script>
 </body>

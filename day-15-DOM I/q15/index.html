@@ -5,16 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .completed {
-        text-decoration: line-through;
-        color: gray;
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    body{
+      display: flex;
+      justify-content: center;
+    }
+    #container{
+      box-shadow: rgb(237, 237, 239) 0 2px 3px;
+      padding: 10px;
+      width: 300px;
+    }
+    button{
+      background-color: rgb(139, 139, 193);
+      border: none;
+      color: white;
+      padding: 5px;
     }
     </style>
 </head>
 <body>
-    <input type="text" id="task" placeholder="enter task name">
-    <button>Add Task</button>
-    <ul id="taskList"></ul>
+    <div id="container">
+      <h2 style="text-align: center;">To Do List</h2>
+      <input type="text" id="task" placeholder="enter task name">
+      <button>Add Task</button>
+      <ul id="taskList"></ul>
+    </div>
 </body>
 <script>
     const taskInput = document.querySelector("#task");
@@ -42,13 +60,15 @@ function renderTasks() {
     taskList.innerHTML = "";
     tasks.forEach((task, index) => {
     const li = document.createElement("li");
-    if (task.completed) li.classList.add("completed");
+    if (task.completed) 
+        li.classList.add("completed");
 
     li.innerHTML = `${task.text}
     <div class="btns">
+      <br>
         <button class="doneBtn" onclick="toggleComplete(${index})">Complete</button>
         <button class="deleteBtn" onclick="deleteTask(${index})">Delete</button>
-      </div>`
+      </div><br>`
         let tasks = [];
     taskList.appendChild(li);
   });
