@@ -3,12 +3,9 @@ const txtBtn = document.getElementById("txt-btn");
 const div = document.getElementById("output");
 bgBtn.addEventListener("click",function(){
     const bgcolor = document.getElementById("col-name").value;
-    if(bgcolor){
+    if(Validate(bgcolor)){
         document.body.style.backgroundColor=bgcolor;
-    }
-    else{
-        alert("Enter a valid color");
-    }
+    } 
 });
 txtBtn.addEventListener("click", function() {
     const text = document.getElementById("txt-cnt").value;
@@ -19,3 +16,12 @@ txtBtn.addEventListener("click", function() {
         document.getElementById("output").textContent = text;
     }
 });
+function Validate(color){
+    const temp = document.createElement("div");
+    temp.style.backgroundColor = color;
+    if(temp.style.backgroundColor === ""){
+        alert("Enter a valid color");
+        return false;
+    }
+        return true;
+}
