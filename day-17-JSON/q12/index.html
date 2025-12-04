@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Button to add a paragraph -->
+    <button onclick="addPara()">Add Paragraph</button>
+    <!-- Button to remove a pragraph -->
+    <button onclick="remove()">Remove Last Paragraph</button>
+    <!-- Division "addPara" to display the paragraphs -->
+    <div id="addPara"></div>
+</body>
+<script>
+    // code to add paragraphs
+    function addPara(){
+        let text=document.getElementById("addPara");
+        let p = document.createElement("p");
+        p.textContent="This is a new paragraph."
+        text.appendChild(p);
+    }
+    //code to remove paragraphs
+    function remove(){
+        let lastPara = document.getElementById("addPara");
+        lastPara.removeChild(lastPara.lastChild);
+    }
+</script>
+</html>

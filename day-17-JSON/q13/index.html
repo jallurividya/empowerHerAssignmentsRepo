@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <textarea id="noteInput" placeholder="Enter Your Text Here..." rows="6"></textarea>
+    <br>
+    <button onclick="saveNotes()">Save</button>
+    <button onclick="loadNotes()">Load Notes</button>
+    <button onclick="clearNotes()">Clear Notes</button>
+    <div id="savedNotes"></div>
+<script>
+    let notes = JSON.parse(localStorage.getItem("savedNotes")) || [];
+    window.onload = function(){
+        loadNotes();
+    }
+    function saveNotes(){
+        const text = document.getElementById("noteInput").value.trim();
+        if (text === ""){
+            alert("Enter some text...")
+            return;
+        }
+        notes.push(text);
+        localStorage.setItem("savedNotes",JSON.stringify(notes));
+        document.getElementById("noteInput").value = "";
+        alert("Note saved!")
+    }
+    function loadNotes(){
+        let list = document.getElementById("savedNotes");
+        list.innerHTML = "";
+        if (notes.length === 0) {
+            list.innerHTML = "<p>No saved notes found!</p>";
+            return;
+        }
+        notes.forEach((note,index) => {
+            let p = document.createElement("p");
+            p.textContent = note;
+            list.appendChild(p);
+        })
+    }
+    function clearNotes(){
+        notes = [];
+        localStorage.removeItem("savedNotes");
+        document.getElementById("savedNotes").innerHTML = "";
+        alert("All notes cleared!");
+    }
+</script>
+
+</html>
