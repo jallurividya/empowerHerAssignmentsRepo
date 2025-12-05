@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        padding: 20px;
+    }
+
+    .container {
+        width: 400px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    ul li {
+        display: flex;
+        justify-content: space-between;
+        margin: 8px 0;
+        padding: 8px;
+        background: #eee;
+        border-radius: 5px;
+    }
+
+    li.completed span {
+        text-decoration: line-through;
+        color: gray;
+    }
+
+    button {
+        margin-left: 5px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>To Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter a task">
+        <button onclick="addTask()">Add Task</button><br><br>
+        <input type="text" id="searchBar" placeholder="Search tasks..." onkeyup="searchTasks()">
+        <ul id="taskList"></ul>
+    </div>
+</body>
+<script>
+    let tasks = [];
+
+    function loadTasks() {
+        const saved = localStorage.getItem('tasks');
+        tasks = saved ? JSON.parse(saved) : [];
+        renderTasks();
+    }
+
+    function saveTasks() {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    function addTask() {
+        const input = document.getElementById('taskInput');
+        const text = input.value.trim();
+        if (!text)
+            return alert("Enter a task");
+
+        const task = {
+            id: Date.now(),
+            text,
+            completed: false
+        };
+
+        tasks.push(task);
+        saveTasks();
+        renderTasks();
+        input.value = "";
+    }
+
+    function toggleComplete(id) {
+        const task = tasks.find(t => t.id === id);
+        task.completed = !task.completed;
+        saveTasks();
+        renderTasks();
+    }
+
+    function removeTask(id) {
+        tasks = tasks.filter(t => t.id !== id);
+        saveTasks();
+        renderTasks();
+    }
+
+    function renderTasks(filter = "") {
+        const list = document.getElementById('taskList');
+        list.innerHTML = "";
+
+        tasks
+            .filter(task => task.text.toLowerCase().includes(filter.toLowerCase()))
+            .forEach(task => {
+                const li = document.createElement('li');
+                if (task.completed)
+                    li.classList.add('completed');
+
+                li.innerHTML = `
+                        <span>${task.text}</span>
+                        <div>
+                            <button onclick="toggleComplete(${task.id})">✓</button>
+                            <button onclick="removeTask(${task.id})">X</button>
+                        </div>`;
+                list.appendChild(li);
+            });
+    }
+
+    function searchTasks() {
+        const filter = document.getElementById('searchBar').value;
+        renderTasks(filter);
+    }
+
+    loadTasks();
+
+</script>
+
+</html>

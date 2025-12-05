@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<style>
-
-</style>
-<body>
+<body style="background-color: antiquewhite;">
+    <h1 style="text-align: center;">Notes</h1>
     <textarea id="noteInput" placeholder="Enter Your Text Here..." rows="6"></textarea>
     <br>
     <button onclick="saveNotes()">Save</button>
@@ -17,6 +15,7 @@
     <div id="savedNotes"></div>
 <script>
     let notes = JSON.parse(localStorage.getItem("savedNotes")) || [];
+    // To load the saved notes whenever we load the page
     window.onload = function(){
         loadNotes();
     }
