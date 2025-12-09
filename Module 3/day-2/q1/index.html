@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Management Web App Using Firebase</title>
+    <style>
+        body {
+            background-color: rgb(160, 219, 242);
+        }
+
+        #layout {
+            display: flex;
+            gap: 1em;
+            padding: 1em;
+        }
+
+        #main {
+            width: 75%;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            width: 20%;
+            gap: 10px;
+            box-shadow: rgba(174, 173, 173, 0.2) 0px 2px 8px 0px;
+            border-radius: 1em;
+            padding: 1em;
+            background-color: #f7f7f7;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            text-align: center;
+            padding: 0px;
+            margin: 0%;
+        }
+
+        img {
+            width: 50%;
+            height: 40%;
+            margin: 1em;
+        }
+
+        #bookList {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin: 1em;
+            gap: 1em;
+        }
+
+        #bookList>div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(240, 245, 245);
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 1em;
+        }
+
+        div>button {
+            width: fit-content;
+            margin: 0.3em;
+            border: none;
+            color: white;
+            padding: 0.5em;
+            background-color: rgb(126, 126, 184);
+            border-radius: 0.5em;
+        }
+
+        @media (max-width: 1024px) {
+            #layout {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #container,
+            #main {
+                width: 90%;
+            }
+
+            #bookList {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        /* Phones */
+        @media (max-width: 768px) {
+
+            #container,
+            #main {
+                width: 100%;
+            }
+
+            #bookList {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 0.5em;
+            }
+
+            div>button {
+                padding: 0.4em 0.8em;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Small Phones */
+        @media (max-width: 480px) {
+            #bookList {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 0.3em;
+            }
+
+            div>button {
+                padding: 0.3em 0.6em;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="color: brown;">Book Management Web App</h1>
+    <div id="layout">
+        <div id="container">
+            <h2>Add book</h2>
+            <label>Title</label><input type="text" id="title" placeholder="enter the name of the book">
+            <label>Author</label><input type="text" id="author" placeholder="enter the author name">
+            <label>Price</label><input type="number" id="price" placeholder="enter the book price">
+            <label>Image Url</label><input type="url" id="image" placeholder="paste the cover image URL here">
+            <button onclick="addBook()">Submit</button>
+        </div>
+        <div id="main">
+            <div id="bookList"></div>
+        </div>
+    </div>
+</body>
+<script>
+    //URL of firebase realtime database
+    const BASE_URL = "https://book-management-app-13898-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    //add books to firebase
+    async function addBook() {
+        let title = document.getElementById("title").value.trim();
+        let author = document.getElementById("author").value.trim();
+        let price = document.getElementById("price").value.trim();
+        let image = document.getElementById("image").value.trim();
+        if (!title || !author || !price || !image) {
+            alert("Please enter all the details");
+            return;
+        }
+        const data = {
+            title,
+            author,
+            price,
+            image
+        };
+        await fetch(`${BASE_URL}books.json`, {
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+        alert("Book added successfully");
+        document.getElementById("title").value = "";
+        document.getElementById("author").value = "";
+        document.getElementById("price").value = "";
+        document.getElementById("image").value = "";
+        getBooks();
+    }
+    //fetching books from firebase
+    async function getBooks() {
+        try {
+            const res = await fetch(`${BASE_URL}books.json`);
+            const data = await res.json();
+            console.log("data", data);
+            const booksArray = data ? Object.entries(data).map(([id, book]) => ({
+                id,
+                ...book
+            }))
+                : [];
+            renderBooks(booksArray);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    function renderBooks(books) {
+        const main_container = document.getElementById("bookList");
+        main_container.innerHTML = "";
+
+        books.forEach((book) => {
+            let card = document.createElement("div");
+            card.className = "card";
+
+            let title = document.createElement("h3");
+            title.textContent = book.title;
+
+            let author = document.createElement("h4");
+            author.textContent = book.author;
+
+            let price = document.createElement("p");
+            price.textContent = book.price;
+
+            let image = document.createElement("img");
+            image.src = book.image;
+            `<br>`
+            let editBtn = document.createElement("button");
+            editBtn.className = "btnEdit";
+            editBtn.textContent = "Update Author";
+            editBtn.onclick = () => updateBook(book.id, book.author);
+
+            let delBtn = document.createElement("button");
+            delBtn.className = "btnDel";
+            delBtn.textContent = "Delete";
+            delBtn.onclick = () => deleteBook(book.id);
+
+            let viewBtn = document.createElement("button");
+            viewBtn.className = "btnView";
+            viewBtn.textContent = "View Details";
+
+            card.appendChild(title);
+            card.appendChild(author);
+            card.appendChild(price);
+            card.appendChild(image);
+            card.appendChild(editBtn);
+            card.appendChild(delBtn);
+            card.appendChild(viewBtn);
+
+            main_container.appendChild(card);
+        });
+    }
+    //Update Book in firebase
+    async function updateBook(id, newAuthor) {
+        const author = prompt("Enter Author Name", newAuthor);
+        if (!author)
+            return;
+        const updateBook = { author };
+        await fetch(`${BASE_URL}books/${id}.json`, {
+            method: "PATCH",
+            body: JSON.stringify(updateBook)
+        });
+        alert("Book Author Updated");
+        getBooks();
+    }
+    //Delete book by ID
+    async function deleteBook(id) {
+        await fetch(`${BASE_URL}books/${id}.json`, {
+            method: "DELETE"
+        });
+        alert("Book Deleted");
+        getBooks();
+    }
+    getBooks();
+</script>
+
+</html>
