@@ -1,7 +1,6 @@
 import { displayTodos } from "./displayTodos.js";
 export function loadTodos() {
   if (localStorage.getItem("isLoggedIn") !== "true") {
-    alert("Please Login First!");
     window.location.href = "login.html";
     return;
   }
