@@ -1,0 +1,56 @@
+#todoContainer{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 5px;
+    margin: auto;
+}
+body{
+    padding-top: 40px;
+    margin: 0;
+    margin-bottom: 40px;
+}
+#navbar{
+    background-color: blueviolet;
+    display: flex;
+    padding: 10px;
+    gap: 30px;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+#footer{
+    background-color: blueviolet;
+    margin-top: 40%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0%;
+}
+h1,h2{
+    text-align: center;
+}
+form{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 30%;
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+input{
+    width: 80%;
+}
