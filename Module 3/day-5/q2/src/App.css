@@ -1,0 +1,10 @@
+div{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 200px;
+  margin: auto;
+}
+h1{
+  text-align: center;
+}
