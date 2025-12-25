@@ -1,0 +1,37 @@
+.todoItem:hover{
+    color: red;
+    background-color: beige;
+    cursor: pointer;
+}
+.todoItem{
+    padding: 10px;
+    margin: 20px;
+    background-color: lightgray;
+}
+button{
+    background-color: rgb(186, 149, 221);
+    border: none;
+    padding: 5px;
+    border-radius: 2px;
+}
+.loginCard{
+    background-color: #fff;
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+    border-radius: 10px;
+}
+.loginCard>input{
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: "1px solid violet";
+}
+.loginPage{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: lightblue;
+}
