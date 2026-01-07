@@ -5,6 +5,7 @@ import AddTodo from "../components/todos/AddTodo";
 import { useAuth } from "../context/AuthContext";
 import * as todoService from "../services/todo.service";
 import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
 
 export default function Todos() {
   const { user } = useAuth();
@@ -33,6 +34,7 @@ export default function Todos() {
 
   return (
     <>
+      <Navbar />
       <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
         {/* Sidebar */}
         <Sidebar todos={todos} selectedId={selectedId} setSelectedId={setSelectedId} />
