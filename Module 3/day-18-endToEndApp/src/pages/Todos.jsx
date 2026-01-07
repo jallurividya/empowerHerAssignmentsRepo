@@ -4,6 +4,7 @@ import TodoList from "../components/todos/TodoList";
 import AddTodo from "../components/todos/AddTodo";
 import { useAuth } from "../context/AuthContext";
 import * as todoService from "../services/todo.service";
+import Footer from "@/components/layout/Footer";
 
 export default function Todos() {
   const { user } = useAuth();
@@ -31,53 +32,37 @@ export default function Todos() {
   const refreshTodos = () => setRefreshFlag((prev) => !prev);
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Sidebar */}
-      <Sidebar todos={todos} selectedId={selectedId} setSelectedId={setSelectedId} />
+    <>
+      <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+        {/* Sidebar */}
+        <Sidebar todos={todos} selectedId={selectedId} setSelectedId={setSelectedId} />
 
-      {/* Main Content */}
-      <div className="flex-1 p-6 overflow-y-auto">
-        {/* Filter Buttons */}
-        <div className="flex gap-2 mb-4">
-          {["all", "completed", "pending"].map((f) => (
-            <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`px-3 py-1 rounded ${
-                filter === f
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-              }`}
-            >
-              {f.charAt(0).toUpperCase() + f.slice(1)}
-            </button>
-          ))}
+        {/* Main Content */}
+        <div className="flex-1 p-6 overflow-y-auto">
+          {/* Filter Buttons */}
+          <div className="flex gap-2 mb-4">
+            {["all", "completed", "pending"].map((f) => (
+              <button
+                key={f}
+                onClick={() => setFilter(f)}
+                className={`px-3 py-1 rounded ${filter === f
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                  }`}
+              >
+                {f.charAt(0).toUpperCase() + f.slice(1)}
+              </button>
+            ))}
+          </div>
+
+          {/* Add Todo Input */}
+          <AddTodo refresh={refreshTodos} />
+
+          {/* Todo List */}
+          <TodoList todos={todos} filter={filter} refresh={refreshTodos} selectedId={selectedId} setSelectedId={setSelectedId} />
         </div>
-
-        {/* Add Todo Input */}
-        <AddTodo refresh={refreshTodos} />
-
-        {/* Todo List */}
-        <TodoList todos={todos} filter={filter} refresh={refreshTodos} selectedId={selectedId} setSelectedId={setSelectedId} />
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
-
-// import Navbar from "../components/layout/Navbar";
-// import Sidebar from "../components/layout/Sidebar";
-// import TodoList from "../components/todos/TodoList";
-// import Footer from "../components/layout/Footer";
-
-// export default function Todos() {
-//     return (
-//         <div className="h-screen flex flex-col">
-//             <Navbar />
-//             <div className="flex flex-1">
-//                 <Sidebar />
-//                 <TodoList />
-//             </div>
-//             <Footer />
-//         </div>
-//     );
-// }
