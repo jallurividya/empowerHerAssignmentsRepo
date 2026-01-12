@@ -43,6 +43,9 @@ The Client–Server Model is a way of communication between a user and a server.
 - **Server**: The system that processes requests and sends responses.
 - Communication happens using the **internet** and protocols like HTTP.
 
+![3 Tier Architecture](https://tse2.mm.bing.net/th/id/OIP.AUbUydeOsaFD0b9w5r3ehgHaFj?pid=Api&P=0&h=180)
+
+
 ---
 
 ## Q5. Three-Tier Architecture
@@ -59,6 +62,8 @@ The Client–Server Model is a way of communication between a user and a server.
 
 ### Data Layer
 - Stores and manages data in databases.
+
+![3 Tier Architecture](images/three-tier.png)
 
 ### Why it is used
 - Easy to manage and update.
