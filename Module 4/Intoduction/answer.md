@@ -63,7 +63,7 @@ The Client–Server Model is a way of communication between a user and a server.
 ### Data Layer
 - Stores and manages data in databases.
 
-![3 Tier Architecture](images/three-tier.png)
+![3 Tier Architecture](https://cdn.infodiagram.com/c/00be49/tier-layers-diagram.png)
 
 ### Why it is used
 - Easy to manage and update.
