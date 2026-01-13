@@ -2,16 +2,12 @@
 
 Node.js is a runtime environment that allows JavaScript to run outside the browser. Its architecture is designed to support **asynchronous and non-blocking operations**, making it suitable for scalable backend applications.
 
----
-
 ## JavaScript Engine (V8)
 
 - V8 is Google’s JavaScript engine written in C++.
 - It converts JavaScript code directly into machine code.
 - This results in faster execution compared to interpretation.
 - In Node.js, V8 is responsible only for **executing JavaScript code**.
-
----
 
 ## Node.js Core APIs
 
@@ -24,16 +20,12 @@ Node.js is a runtime environment that allows JavaScript to run outside the brows
   - `crypto` – encryption and hashing
 - These APIs internally use native bindings and libuv.
 
----
-
 ## Native Bindings
 
 - Native bindings act as a bridge between JavaScript and C/C++ code.
 - They allow Node.js to access low-level system features.
 - Used when performance or OS-level access is required.
 - Example: File system operations rely on native bindings.
-
----
 
 ## Event Loop
 
