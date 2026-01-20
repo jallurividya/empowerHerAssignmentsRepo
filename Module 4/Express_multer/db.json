@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": "e2d21c9b-66f7-47e8-b726-276fc7e1d347",
+      "name": "sai",
+      "email": "sai@gmail.com",
+      "password": "sai123",
+      "profilePic": "https://res.cloudinary.com/dlhqxmkbq/image/upload/v1768918573/mhbosx09m8kxn0kuc6hp.jpg"
+    },
+    {
+      "id": "019145e7-ead9-49b3-8e46-4649cf479da2",
+      "name": "sai",
+      "email": "sai1@gmail.com",
+      "password": "sai123",
+      "profilePic": "https://res.cloudinary.com/dlhqxmkbq/image/upload/v1768918616/r1prcdgohptcyuiuyxka.jpg"
+    }
+  ]
+}
