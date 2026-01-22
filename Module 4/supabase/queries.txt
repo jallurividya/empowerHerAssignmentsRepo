@@ -1,0 +1,26 @@
+CREATE TABLE students (id SERIAL PRIMARY KEY, name TEXT, email TEXT, age INTEGER, course TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+
+INSERT INTO students (name, email, age, course) VALUES ('Sahithi', 'sahithi@gmail.com', 21, 'Web Development'), ('Ravi Kumar', 'ravi.kumar@gmail.com', 23, 'Data Science'), ('Anita Sharma', 'anita.sharma@gmail.com', 20, 'Web Development'),('Suresh Reddy', 'suresh.reddy@gmail.com', 25, 'Cyber Security'), ('Pooja Mehta', 'pooja.mehta@gmail.com', 19, 'Data Science'), ('Aman Verma', 'aman.verma@gmail.com', 22, 'AI & ML'), ('Neha Singh', 'neha.singh@gmail.com', 24, 'Web Development');
+
+SELECT * FROM students;
+Result: "./outputs/image.png"
+
+SELECT * FROM students WHERE age > 20;
+Result: "./outputs/Screenshot 2026-01-22 194400.png
+
+SELECT name, email FROM students;
+Result: "./outputs/Screenshot 2026-01-22 194709.png"
+
+SELECT * FROM students WHERE course = 'Web Development';
+Result: "./outputs/Screenshot 2026-01-22 194901.png"
+
+UPDATE students SET age = 22 WHERE id = 1;
+
+UPDATE students SET course = 'Data Analytics' WHERE course = 'Data Science';
+Result: "./outputs/Screenshot 2026-01-22 195100.png"
+
+DELETE FROM students WHERE id = 5;
+Result: "./outputs/Screenshot 2026-01-22 195344.png"
+
+DELETE FROM students WHERE age < 23;
+Result: "./outputs/Screenshot 2026-01-22 195649.png"
