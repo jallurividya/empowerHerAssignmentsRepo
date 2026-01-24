@@ -1,0 +1,11 @@
+select count(*) from students;
+SELECT AVG(age) FROM students;
+SELECT MIN(age), MAX(age) FROM students;
+SELECT course, COUNT(*) FROM students GROUP BY course;
+SELECT count(*) FROM students WHERE age > 20;
+SELECT course, COUNT(*) FROM students GROUP BY course;
+SELECT course, COUNT(*) FROM students GROUP BY course HAVING COUNT(*) > 1;
+SELECT course, COUNT(*) FROM students GROUP BY course ORDER BY COUNT(*) DESC;
+SELECT * FROM students ORDER BY created_at DESC LIMIT 3;
+SELECT * FROM students ORDER BY age DESC LIMIT 5;
+SELECT * FROM students WHERE course = 'Data Science' ORDER BY age DESC;
