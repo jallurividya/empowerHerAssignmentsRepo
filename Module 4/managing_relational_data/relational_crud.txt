@@ -1,0 +1,20 @@
+CREATE TABLE users ( id SERIAL PRIMARY KEY, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+CREATE TABLE orders ( id SERIAL PRIMARY KEY, user_id INTEGER NOT NULL, amount INTEGER NOT NULL, status TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE RESTRICT );
+INSERT INTO users (name, email) VALUES ('Aarav', 'aarav@gmail.com'), ('Bhavya', 'bhavya@gmail.com'), ('Charan', 'charan@gmail.com'), ('Diya', 'diya@gmail.com'), ('Eshan', 'eshan@gmail.com');
+INSERT INTO orders (user_id, amount, status) VALUES (1, 500, 'placed'), (1, 1200, 'shipped'), (1, 800, 'delivered'), (2, 300, 'placed'), (2, 450, 'placed'), (3, 1000, 'shipped'), (4, 700, 'placed'), (5, 900, 'delivered'), (5, 400, 'placed');
+SELECT * FROM users;
+SELECT * FROM orders;
+SELECT * FROM orders WHERE user_id = 1;
+SELECT u.id, u.name, COUNT(o.id) FROM users u JOIN orders o ON u.id = o.user_id GROUP BY u.id, u.name HAVING COUNT(o.id) > 1;
+SELECT u.id, u.name, SUM(o.amount) AS total_amount FROM users u JOIN orders o ON u.id = o.user_id GROUP BY u.id, u.name;
+UPDATE users SET email = 'charan_new@gmail.com' WHERE id = 3;
+UPDATE orders SET status = 'cancelled' WHERE user_id = 2;
+UPDATE orders SET amount = 600 WHERE id = 4;
+DELETE FROM orders WHERE id = 9;
+DELETE FROM orders WHERE user_id = 4;
+DELETE FROM users WHERE id = 1;
+
+-- Why should orders not be stored inside the users table?
+Orders represent a one-to-many relationship where a single user can have multiple orders.
+Storing orders inside the users table would cause data duplication, violate normalization rules,
+and make it difficult to manage, query, update, or scale order data efficiently.
