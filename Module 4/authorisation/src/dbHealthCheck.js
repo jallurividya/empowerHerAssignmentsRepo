@@ -1,0 +1,13 @@
+import { supabase } from "./config/supabase.js";
+export async function checkDBConnection() {
+    try{
+        const {error} = await supabase.from("users").select().limit(1);
+        if(error) throw error;
+        console.log("Database connected successfully");
+        return true;
+    }
+    catch(error){
+        console.log("Database Connection Failed",error.message);
+        return false;
+    }
+}
